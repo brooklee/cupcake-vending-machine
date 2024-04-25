@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10+Charted&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+10+Charted&display=swap');
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ivory;
+}
+
+.r3f
+{
+    touch-action: none;
+}
+
+.htmlScreen iframe
+{
+    width: 1024px;
+    height: 670px;
+    border: none;
+    border-radius: 20px;
+    background: #000000;
+}
+
+@keyframes TransitioningBackground {
+    0% {
+      background-position: 1% 0%;
+    }
+    50% {
+      background-position: 99% 100%;
+    }
+    100% {
+      background-position: 1% 0%;
+    }
+  }
+
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
+  }
+
+  @keyframes slide {
+    0%, 70% { 
+      transform: translateX(-150px) skewX(-15deg); 
+    }
+    100% { 
+      transform: translateX(600px) skewX(-15deg); 
+    }
+  }
+
+.start{
+    color: #fff;
+    background-color: #8B39DD;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    width: 400px;
+    height: 200px;
+    font-size: 100px;
+    font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  position: relative;
+  top: 0;
+    overflow: hidden;
+    background-image: linear-gradient(270deg, #9f5ee0, #8B39DD);
+    background-size: 400% 400%;
+    /* animation: bounce 3s linear infinite; */
+    transition: 0.6s;
+}
+
+  .start::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    width: 60px;
+    height: 100%;
+    top: 0;
+    filter: blur(30px);
+    transform: translateX(-150px) skewX(-15deg);
+    animation: slide 3s linear infinite;
+  }
+  .start::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    top: 0;
+    filter: blur(5px);
+    transform: translateX(-150px) skewX(-15deg);
+  }
+  .start:hover {
+    background-image: linear-gradient(to left, #8B39DD, #9f5ee0);
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  .start:hover::before, .subscribe-button:hover::after {
+    transform: translateX(600px) skewX(-15deg);
+    transition: 0.7s;
+  }
+  
+
+  .builder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 700px;
+    align-items: center;
+  }
+
+ .builerImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -200px;
+
+  }
+ 
+
+  .builderButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
+
+  .builderButtons > button, .finButtons > button, .navButtons > button {
+    color: #fff;
+    background-color: #8B39DD;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    width: 300px;
+    height: 75px;
+    font-size: 45px;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  .finButtons > button {
+   margin: 20px;
+  }
+
+  .cake{
+    width: 400px;
+    height: auto;
+  }
+
+  .frosting{
+    position: relative;
+    width: 400px;
+    height: auto;
+    top: 400px;
+  }
+
+  .navButtons{
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    align-items: center;
+    position: relative;
+    
+  }
+.fin{
+    font-size: 100px;
+    font-family: "Jersey 10", sans-serif;
+    color: #fff;
+}
+
+.fin p {
+   margin: 50px;
+}
+
+  .finButtons{
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    align-items: center;
+    position: relative;
+    top: -200px;
+  }
+
+
+ .fin > .start{
+    position: relative;
+    left: -900px;
+    
+ }
