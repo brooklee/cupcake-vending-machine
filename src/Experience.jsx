@@ -61,10 +61,11 @@ export default function Experience() {
 
     const [cupcakeProps, setCupcake] = useSpring(() => ({
         scale: [.1, .1, .1],
-        position: [.4, -.2, .9],
+        position: [.4, -.2, -2],
         opacity: 0,
-        color: 'hotpink',  // Default color
-        from: { opacity: 0, color: 'blue', scale: [0.1, 0.1, 0.1], position: [.4, -.2, .9] },
+        color: 'green',  // Default color
+        metalness: 1,
+        from: { opacity: 0, color: 'blue', scale: [0.1, 0.1, 0.1], position: [.4, -.2, -2], metalness: 1 },
     }));
 
 
@@ -95,6 +96,7 @@ export default function Experience() {
         if (cupcakeRef.current) {
             cupcakeRef.current.traverse((child) => {
                 if (child.isMesh && meshIndex < colors.length) {
+                    const oldMaterial = child.material;
                     child.material = new MeshStandardMaterial({
                         color: colors[meshIndex],
                         transparent: true, // Set transparency if needed
@@ -149,7 +151,7 @@ export default function Experience() {
         // setRotation([rotation[0] + 1, rotation[1]])
 
 
-        setCupcake({ scale: [.1, .1, .1], position: [.4, -.2, .9], opacity: 0, });
+        setCupcake({ scale: [.1, .1, .1], position: [.4, -.2, -2], opacity: 0, });
     }
 
 
@@ -224,6 +226,27 @@ export default function Experience() {
     }, [colors]);  // Respond only to changes in colors
 
 
+    useEffect(() => {
+        if (cupcakeRef.current) {
+            let meshIndex = 0;
+            // Array of metalness and roughness settings for each mesh
+            const settings = [
+                { metalness: .3, roughness: .7 },  // bottom
+                { metalness: 0.2, roughness: 1 }, // Muffin top
+                { metalness: 0.8, roughness: 0.3 }  // frosting
+            ];
+
+            cupcakeRef.current.traverse((child) => {
+                if (child.isMesh && meshIndex < settings.length) {
+                    // Apply specific settings from the array
+                    child.material.metalness = settings[meshIndex].metalness;
+                    child.material.roughness = settings[meshIndex].roughness;
+                    meshIndex++; // Increment to apply the next settings to the next mesh
+                }
+            });
+        }
+    }, [colors, cupcakeRef]); // Dependency on the cupcakeRef to ensure it runs when the ref is updated
+
     const handleFrostingClick = (selectedFrosting) => {
         const newFrostings = {
             vanilla: false,
@@ -286,7 +309,8 @@ export default function Experience() {
                 await next({ rotation: [0, 0, 0], position: [0, -1.5, 0] });
                 await next({ opacity: 0, duration: 100 });
 
-                setCupcake({ opacity: 1, delay: 300 });
+                setCupcake({ opacity: 1, delay: 100 });
+                setCupcake({ position: [.4, -.2, .95], delay: 300 });
                 // setCupcake({ scale: [.8, .8, .8], delay: 300 });
                 setShake({ opacity: 0, delay: 300 });
                 setStep(5);
@@ -441,7 +465,7 @@ export default function Experience() {
                         {step === 5 && (
                             <div className='fin'>
                                 <p>Grab Cupcake</p>
-                                <p>:</p>
+                                <p>: &#41;</p>
                             </div>
                         )}
 
